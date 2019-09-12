@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import Stevia
+import MediaPlayer
 
 class PlayerDetailView: UIView {
 
@@ -82,10 +83,47 @@ class PlayerDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        setupAudioSession()
+        setupRemoteControl()
         setupGestures()
         setupUI()
         setupSlider()
         setupControls()
+    }
+
+    //MARK:- Audio Session
+    private func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let sessionErr {
+            print("Failed to activate audio session: ", sessionErr)
+        }
+    }
+
+    //MARK:- Remote Control
+    private func setupRemoteControl() {
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.play()
+            self.controlsView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            self.miniPlayerView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.player.pause()
+            self.controlsView.playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            self.miniPlayerView.playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            return .success
+        }
+        commandCenter.togglePlayPauseCommand.isEnabled = true
+        commandCenter.togglePlayPauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handlePlayPause()
+            return .success
+        }
     }
 
 

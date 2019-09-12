@@ -10,6 +10,7 @@
 		0111DD722326D96B00F69FF8 /* CMTime+Podcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111DD712326D96B00F69FF8 /* CMTime+Podcasts.swift */; };
 		0111DD75232737AD00F69FF8 /* MiniPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111DD74232737AD00F69FF8 /* MiniPlayerView.swift */; };
 		0111DD7723278E8B00F69FF8 /* PlayerDetailView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0111DD7623278E8B00F69FF8 /* PlayerDetailView+Gestures.swift */; };
+		011325CB232808E70035C874 /* UIApplication+Podcasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011325CA232808E70035C874 /* UIApplication+Podcasts.swift */; };
 		0117C20F2322573A003E4170 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0117C20E2322573A003E4170 /* AppDelegate.swift */; };
 		0117C2162322573C003E4170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0117C2152322573C003E4170 /* Assets.xcassets */; };
 		0117C2192322573C003E4170 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0117C2172322573C003E4170 /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 		0111DD712326D96B00F69FF8 /* CMTime+Podcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMTime+Podcasts.swift"; sourceTree = "<group>"; };
 		0111DD74232737AD00F69FF8 /* MiniPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerView.swift; sourceTree = "<group>"; };
 		0111DD7623278E8B00F69FF8 /* PlayerDetailView+Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerDetailView+Gestures.swift"; sourceTree = "<group>"; };
+		011325CA232808E70035C874 /* UIApplication+Podcasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Podcasts.swift"; sourceTree = "<group>"; };
 		0117C20B2322573A003E4170 /* Podcasts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcasts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0117C20E2322573A003E4170 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0117C2152322573C003E4170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				0117C23B23248A70003E4170 /* RSSFeed+Podcasts.swift */,
 				0111DD712326D96B00F69FF8 /* CMTime+Podcasts.swift */,
+				011325CA232808E70035C874 /* UIApplication+Podcasts.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +229,11 @@
 				TargetAttributes = {
 					0117C20A2322573A003E4170 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -315,6 +323,7 @@
 				0111DD722326D96B00F69FF8 /* CMTime+Podcasts.swift in Sources */,
 				0117C22C2323B1B3003E4170 /* Service.swift in Sources */,
 				0117C22F2324574E003E4170 /* PodcastCell.swift in Sources */,
+				011325CB232808E70035C874 /* UIApplication+Podcasts.swift in Sources */,
 				0117C20F2322573A003E4170 /* AppDelegate.swift in Sources */,
 				0117C235232473D2003E4170 /* EpisodeCell.swift in Sources */,
 				0117C22123225758003E4170 /* MainTabBarController.swift in Sources */,
