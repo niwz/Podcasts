@@ -9,13 +9,14 @@
 import Foundation
 import FeedKit
 
-struct Episode {
+struct Episode: Codable {
     let title: String
     let author: String
     let description: String
     let pubDate: Date
     var imageUrl: String?
     var streamUrl: String
+    var fileUrl: String?
 
     init(feedItem: RSSFeedItem) {
         self.title = feedItem.title ?? ""

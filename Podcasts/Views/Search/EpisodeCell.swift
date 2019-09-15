@@ -53,6 +53,13 @@ class EpisodeCell: UITableViewCell {
         return label
     }()
 
+    let progressLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 30)
+        label.textColor = .white
+        return label
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let stackView = VStack(arrangedSubviews: [pubDateLabel, titleLabel, descriptionLabel], spacing: 5)
@@ -60,6 +67,10 @@ class EpisodeCell: UITableViewCell {
         layout([16,
                 |-16-episodeImageView.size(100)-12-stackView-|,
                 16])
+        sv(progressLabel)
+        progressLabel.CenterX == episodeImageView.CenterX
+        progressLabel.CenterY == episodeImageView.CenterY
+        progressLabel.isHidden = true
     }
 
     required init?(coder aDecoder: NSCoder) {

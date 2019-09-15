@@ -20,7 +20,7 @@ class MainTabBarController: UITabBarController {
         viewControllers = [
             createNavController(viewController: PodcastsSearchController(), title: "Search", image: #imageLiteral(resourceName: "search")),
             createNavController(viewController: favoritesController, title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
-            createNavController(viewController: UIViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
+            createNavController(viewController: DownloadsController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
         ]
         setupPlayerDetailView()
     }

@@ -34,11 +34,21 @@ class PlayerDetailView: UIView {
     }()
 
     func playPodcast() {
-        guard let url = URL(string: episode.streamUrl) else { return }
-        controlsView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        miniPlayerView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        let url: URL
+        if let fileUrl = episode.fileUrl {
+            guard let fileUrl = URL(string: fileUrl) else { return }
+            let fileName = fileUrl.lastPathComponent
+
+            guard let trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            url = trueLocation.appendingPathComponent(fileName)
+        } else {
+            guard let streamUrl = URL(string: episode.streamUrl) else { return }
+            url = streamUrl
+        }
         let playerItem = AVPlayerItem(url: url)
         player.replaceCurrentItem(with: playerItem)
+        controlsView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        miniPlayerView.playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         player.play()
     }
 
