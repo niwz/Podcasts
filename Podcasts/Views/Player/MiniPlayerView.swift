@@ -13,7 +13,7 @@ class MiniPlayerView: UIView {
 
     let episodeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.size(64)
+        imageView.size(50)
         imageView.image = #imageLiteral(resourceName: "appicon")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -32,7 +32,7 @@ class MiniPlayerView: UIView {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         button.tintColor = .black
-        button.size(40)
+        button.size(32)
         return button
     }()
 
@@ -40,7 +40,7 @@ class MiniPlayerView: UIView {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "fastforward15"), for: .normal)
         button.tintColor = .black
-        button.size(40)
+        button.size(32)
         return button
     }()
 
@@ -54,12 +54,11 @@ class MiniPlayerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         let stackView = UIStackView(arrangedSubviews: [episodeImageView, titleLabel, playButton, forwardButton])
-        stackView.spacing = 16
         stackView.alignment = .center
-        stackView.distribution = .equalCentering
+        stackView.distribution = .equalSpacing
         sv(separatorView, stackView)
         separatorView.top(0).fillHorizontally()
-        stackView.fillContainer(16)
+        stackView.fillContainer(8)
     }
 
     required init?(coder aDecoder: NSCoder) {

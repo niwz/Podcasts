@@ -32,6 +32,38 @@ class EpisodesController: UITableViewController {
         super.viewDidLoad()
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
+        setupNavigationBarItems()
+    }
+
+    private func setupNavigationBarItems() {
+        let savedPodcasts = UserDefaults.standard.savedPodcasts()
+        let hasFavorited = savedPodcasts.firstIndex(where: { $0.trackName == podcast.trackName && $0.artistName == podcast.artistName }) != nil
+        if hasFavorited {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: nil, action: nil)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite))
+        }
+    }
+
+    @objc func handleSaveFavorite() {
+        print("Saving podcast.")
+        if let podcast = podcast {
+            do{
+                var podcasts = UserDefaults.standard.savedPodcasts()
+                podcasts.append(podcast)
+                podcasts = Array(NSOrderedSet(array: podcasts)) as! [Podcast]
+                let data = try JSONEncoder().encode(podcasts)
+                UserDefaults.standard.set(data, forKey: UserDefaults.savedPodcastsKey)
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "heart"), style: .plain, target: nil, action: nil)
+                showBadgeHighlight()
+            } catch let encodeError {
+                print("Failed to save podcast: Error: \(encodeError)")
+            }
+        }
+    }
+
+    private func showBadgeHighlight() {
+        UIApplication.mainTabBarController()?.viewControllers?[1].tabBarItem.badgeValue = "New"
     }
 
     private func fetchEpisodes() {

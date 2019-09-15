@@ -144,7 +144,7 @@ class PlayerDetailView: UIView {
         maximizedStackView.Top == safeAreaLayoutGuide.Top + 24
         imageView.heightEqualsWidth()
         imageView.transform = shrinkTransform
-        miniPlayerView.fillHorizontally().top(0).height(100)
+        miniPlayerView.fillHorizontally().top(0).height(64)
     }
 
     //MARK:- Slider

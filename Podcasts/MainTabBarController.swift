@@ -16,9 +16,10 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .purple
+        let favoritesController = FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())
         viewControllers = [
             createNavController(viewController: PodcastsSearchController(), title: "Search", image: #imageLiteral(resourceName: "search")),
-            createNavController(viewController: UIViewController(), title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
+            createNavController(viewController: favoritesController, title: "Favorites", image: #imageLiteral(resourceName: "favorites")),
             createNavController(viewController: UIViewController(), title: "Downloads", image: #imageLiteral(resourceName: "downloads"))
         ]
         setupPlayerDetailView()
@@ -48,7 +49,7 @@ class MainTabBarController: UITabBarController {
         guard let topConstraint = playerDetailView.topConstraint else { return }
         guard let bottomConstraint = playerDetailView.bottomConstraint else { return }
         NSLayoutConstraint.deactivate([topConstraint, bottomConstraint])
-        playerDetailView.Top == tabBar.Top - 100
+        playerDetailView.Top == tabBar.Top - 64
         playerDetailView.bottom(0)
         playerDetailView.miniPlayerView.alpha = 1
         playerDetailView.maximizedStackView.alpha = 0
