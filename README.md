@@ -6,4 +6,4 @@ Fully functional podcast player app with live search functionality, and ability 
 
 ![Favorites Demo](demo/favorites_demo.gif)
 
-![Download Episode Demo](demo/downloads_demo.gif)
+![Downloads Demo](demo/downloads_demo.gif)
